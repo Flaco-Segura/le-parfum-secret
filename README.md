@@ -2,7 +2,7 @@
 
 Build and tag Docker image:
 
-`$ docker build -t le-parfum-secret:dev`
+`$ docker build . -t le-parfum-secret:dev`
 
 Spin up the container:
 
