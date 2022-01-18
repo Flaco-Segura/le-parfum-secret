@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import Item from './Item';
 
-const List = props => <ul> {props.list.map(item => <Item item={item}/>)} </ul>
+const List = ({list}) => <ul> {
+  list.map(({objectID, ...item}) => <Item key={item.objectID} {...item}/>)}
+</ul>
 
 export default List;
