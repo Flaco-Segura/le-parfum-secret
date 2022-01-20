@@ -7,7 +7,7 @@ const Search = ({searchTerm, onSearch}) => {
 
   return <div>
     <label htmlFor='search'>Search: </label>
-    <input id='search' type='text' onChange={handleChange}/>
+    <input id='search' type='text' value={searchTerm} onChange={handleChange}/>
     <p>
       Searching for <strong>{searchTerm}</strong>
     </p>

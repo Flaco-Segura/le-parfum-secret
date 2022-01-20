@@ -23,11 +23,16 @@ const stories = [
 ];
 
 const App = () => {
-  const handleSearch = event => setSearchTerm(event.target.value);
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const handleSearch = event => {
+    setSearchTerm(event.target.value);
+  };
+  const [searchTerm, setSearchTerm] = React.useState(localStorage.getItem('search') || '');
   const searchedStories = stories.filter( story => {
     return story.title.toLowerCase().includes(searchTerm.toLowerCase());
   });
+  React.useEffect(() => {
+    localStorage.setItem('search', searchTerm);
+  }, [searchTerm]);
 
   return <div>  
     <h1>My Hacker Stories</h1>
