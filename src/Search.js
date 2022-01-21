@@ -11,6 +11,7 @@ const Search = ({searchTerm, onSearch}) => {
       htmlFor='search'
       id='search'
       value={searchTerm}
+      isFocused
       onInputChange={handleChange}
     >
       <strong>Search: </strong>
