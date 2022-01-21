@@ -1,4 +1,5 @@
 import * as React from 'react';
+import InputWithLabel from './InputWithLabel';
 
 const Search = ({searchTerm, onSearch}) => {
   const handleChange = event => {
@@ -6,8 +7,13 @@ const Search = ({searchTerm, onSearch}) => {
   };
 
   return <div>
-    <label htmlFor='search'>Search: </label>
-    <input id='search' type='text' value={searchTerm} onChange={handleChange}/>
+    <InputWithLabel
+      htmlFor='search'
+      label='Search:'
+      id='search'
+      value={searchTerm}
+      onInputChange={handleChange}
+    />
     <p>
       Searching for <strong>{searchTerm}</strong>
     </p>
