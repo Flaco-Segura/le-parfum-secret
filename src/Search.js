@@ -9,11 +9,12 @@ const Search = ({searchTerm, onSearch}) => {
   return <div>
     <InputWithLabel
       htmlFor='search'
-      label='Search:'
       id='search'
       value={searchTerm}
       onInputChange={handleChange}
-    />
+    >
+      <strong>Search: </strong>
+    </InputWithLabel>
     <p>
       Searching for <strong>{searchTerm}</strong>
     </p>
