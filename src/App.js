@@ -3,7 +3,7 @@ import * as React from 'react';
 import Search from './Search';
 import List from './List';
 
-const stories = [
+const initialStories = [
   {
     title: 'React',
     url: 'https://reactjs.org/',
@@ -37,6 +37,17 @@ const useSemiPersistentState = (key, initialState) => {
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState('search', '');
 
+  const [stories, setStories] = React.useState(initialStories);
+
+  const handleRemoveStory = item => {
+    console.log(item.objectID)
+    const newStories = stories.filter(
+      story => item.objectID !== story.objectID
+    );
+
+    setStories(newStories);
+  };
+
   const handleSearch = event => {
     setSearchTerm(event.target.value);
   };
@@ -44,6 +55,7 @@ const App = () => {
   const searchedStories = stories.filter( story => {
     return story.title.toLowerCase().includes(searchTerm.toLowerCase());
   });
+
   React.useEffect(() => {
     localStorage.setItem('search', searchTerm);
   }, [searchTerm]);
@@ -51,11 +63,11 @@ const App = () => {
   return <div>  
     <h1>My Hacker Stories</h1>
 
-    <Search onSearch={handleSearch} searchTerm={searchTerm}/>      
+    <Search onSearch={handleSearch} searchTerm={searchTerm} />      
 
     <hr />
 
-    <List list={searchedStories}/>      
+    <List list={searchedStories} onRemoveItem={handleRemoveStory} />      
   </div>
 }
 
