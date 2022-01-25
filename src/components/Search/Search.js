@@ -1,5 +1,5 @@
 import * as React from 'react';
-import InputWithLabel from './InputWithLabel';
+import InputWithLabel from '../InputWithLabel/InputWithLabel';
 
 const Search = ({searchTerm, onSearch}) => {
   const handleChange = event => {

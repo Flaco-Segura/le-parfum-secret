@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Item from './Item';
+import Item from '../Item/Item';
 
 const List = ({list, onRemoveItem}) => 
 <ul> 

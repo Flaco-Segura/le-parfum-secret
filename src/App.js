@@ -1,7 +1,9 @@
 import * as React from 'react';
 
-import Search from './Search';
-import List from './List';
+import Search from './components/Search/Search';
+import List from './components/List/List';
+
+import storiesReducer from './reducers/storiesReducer';
 
 const initialStories = [
   {
@@ -43,7 +45,10 @@ const useSemiPersistentState = (key, initialState) => {
 const App = () => {
   const [searchTerm, setSearchTerm] = useSemiPersistentState('search', '');
 
-  const [stories, setStories] = React.useState([]);
+  const [stories, dispatchStories] = React.useReducer(
+    storiesReducer,
+    []
+  );
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
 
@@ -51,18 +56,19 @@ const App = () => {
     setIsLoading(true);
 
     getAsyncStories().then(result => {
-      setStories(result.data.stories);
+      dispatchStories({
+        type: 'SET_STORIES',
+        payload: result.data.stories
+      })
       setIsLoading(false);
     }).catch(() => setIsError(true));
   }, []);
 
   const handleRemoveStory = item => {
-    console.log(item.objectID)
-    const newStories = stories.filter(
-      story => item.objectID !== story.objectID
-    );
-
-    setStories(newStories);
+    dispatchStories({
+      type: 'REMOVE_STORY',
+      payload: item,
+    });
   };
 
   const handleSearch = event => {
