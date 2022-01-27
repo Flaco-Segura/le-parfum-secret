@@ -43,25 +43,28 @@ const useSemiPersistentState = (key, initialState) => {
 };
 
 const App = () => {
+  const isLoading = false;
+  const isError = false;
   const [searchTerm, setSearchTerm] = useSemiPersistentState('search', '');
 
   const [stories, dispatchStories] = React.useReducer(
     storiesReducer,
-    []
+    { data: [], isLoading: isLoading, isError: isError }
   );
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [isError, setIsError] = React.useState(false);
 
   React.useEffect(() => {
-    setIsLoading(true);
+    dispatchStories({ type: 'STORIES_FETCH_INIT' });
 
-    getAsyncStories().then(result => {
-      dispatchStories({
-        type: 'SET_STORIES',
-        payload: result.data.stories
+    getAsyncStories()
+      .then(result => {
+        dispatchStories({
+          type: 'STORIES_FETCH_SUCCESS',
+          payload: result.data.stories
+        })
       })
-      setIsLoading(false);
-    }).catch(() => setIsError(true));
+      .catch(
+        () => dispatchStories({ type: 'STORIES_FETCH_FAILURE' })
+      );
   }, []);
 
   const handleRemoveStory = item => {
@@ -74,8 +77,10 @@ const App = () => {
   const handleSearch = event => {
     setSearchTerm(event.target.value);
   };
+
+  console.log(stories);
   
-  const searchedStories = stories.filter( story => {
+  const searchedStories = stories.data.filter( story => {
     return story.title.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
@@ -90,9 +95,9 @@ const App = () => {
 
     <hr />
 
-    {isError && <p>Something went error...</p>}
+    {stories.isError && <p>Something went error...</p>}
 
-    {isLoading ?
+    {stories.isLoading ?
       (
         <p>Loading...</p>
       ) : (
