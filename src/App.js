@@ -5,6 +5,8 @@ import List from './components/List/List';
 
 import storiesReducer from './reducers/storiesReducer';
 
+import { STORIES_FETCH_FAILURE, STORIES_FETCH_INIT, STORIES_FETCH_SUCCESS, REMOVE_STORY  } from './actions/actions';
+
 const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?query='; 
 
 const useSemiPersistentState = (key, initialState) => {
@@ -30,22 +32,22 @@ const App = () => {
   );
 
   React.useEffect(() => {
-    dispatchStories({ type: 'STORIES_FETCH_INIT' });
+    dispatchStories({ type: STORIES_FETCH_INIT });
 
     fetch(`${API_ENDPOINT}react`)
       .then(response => response.json())
       .then(result => {
         dispatchStories({
-          type: 'STORIES_FETCH_SUCCESS',
+          type: STORIES_FETCH_SUCCESS,
           payload: result.hits,
         });
       })
-      .catch(() => dispatchStories({type: 'STORIES_FETCH_FAILURE'}))
+      .catch(() => dispatchStories({type: STORIES_FETCH_FAILURE}))
   }, []);
 
   const handleRemoveStory = item => {
     dispatchStories({
-      type: 'REMOVE_STORY',
+      type: REMOVE_STORY,
       payload: item,
     });
   };
