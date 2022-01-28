@@ -31,7 +31,7 @@ const App = () => {
     { data: [], isLoading: isLoading, isError: isError }
   );
 
-  React.useEffect(() => {
+  const handleFetchStories = React.useCallback(() => {
     if ( !searchTerm) return;
 
     dispatchStories({ type: STORIES_FETCH_INIT });
@@ -59,8 +59,8 @@ const App = () => {
   };
 
   React.useEffect(() => {
-    localStorage.setItem('search', searchTerm);
-  }, [searchTerm]);
+    handleFetchStories();
+  }, [handleFetchStories]);
 
   return <div>  
     <h1>My Hacker Stories</h1>
