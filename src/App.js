@@ -26,6 +26,18 @@ const App = () => {
   const isError = false;
   const [searchTerm, setSearchTerm] = useSemiPersistentState('search', '');
 
+  const [url, setUrl] = React.useState(
+    `${API_ENDPOINT}${searchTerm}`
+  );
+
+  const handleSearchInput = event => {
+    setSearchTerm(event.target.value)
+  };
+
+  const handleSearchSubmit = () => {
+    setUrl(`${API_ENDPOINT}${searchTerm}`);
+  }
+
   const [stories, dispatchStories] = React.useReducer(
     storiesReducer,
     { data: [], isLoading: isLoading, isError: isError }
@@ -36,7 +48,7 @@ const App = () => {
 
     dispatchStories({ type: STORIES_FETCH_INIT });
 
-    fetch(`${API_ENDPOINT}${searchTerm}`)
+    fetch(url)
       .then(response => response.json())
       .then(result => {
         dispatchStories({
@@ -45,17 +57,13 @@ const App = () => {
         });
       })
       .catch(() => dispatchStories({type: STORIES_FETCH_FAILURE}))
-  }, [searchTerm]);
+  }, [url]);
 
   const handleRemoveStory = item => {
     dispatchStories({
       type: REMOVE_STORY,
       payload: item,
     });
-  };
-
-  const handleSearch = event => {
-    setSearchTerm(event.target.value);
   };
 
   React.useEffect(() => {
@@ -65,7 +73,11 @@ const App = () => {
   return <div>  
     <h1>My Hacker Stories</h1>
 
-    <Search onSearch={handleSearch} searchTerm={searchTerm} />      
+    <Search
+      handleSearchInput={handleSearchInput}
+      handleSearchSubmit={handleSearchSubmit}
+      searchTerm={searchTerm} 
+    />      
 
     <hr />
 
