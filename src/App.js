@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 
 import Search from './components/Search/Search';
 import List from './components/List/List';
@@ -44,16 +45,17 @@ const App = () => {
   );
 
   const handleFetchStories = React.useCallback(() => {
-    if ( !searchTerm) return;
+    if (!searchTerm) return;
 
     dispatchStories({ type: STORIES_FETCH_INIT });
 
-    fetch(url)
-      .then(response => response.json())
+    axios
+      .get(url)
+      .then(response => response)
       .then(result => {
         dispatchStories({
           type: STORIES_FETCH_SUCCESS,
-          payload: result.hits,
+          payload: result.data.hits,
         });
       })
       .catch(() => dispatchStories({type: STORIES_FETCH_FAILURE}))
