@@ -1,0 +1,15 @@
+redis:
+  image: redis
+  container_name: db
+  expose:
+    - 6379  
+app:
+  build: ./
+  volumes:
+    - ./:/app
+  ports:
+    - 3000:3000
+  links:
+    - redis
+  environment:
+    - REDIS_URL=redis://db
