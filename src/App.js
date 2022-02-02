@@ -1,7 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 
-import Search from './components/Search/Search';
+import SearchForm from './components/SearchForm/SearchForm';
 import List from './components/List/List';
 
 import storiesReducer from './reducers/storiesReducer';
@@ -35,8 +35,10 @@ const App = () => {
     setSearchTerm(event.target.value)
   };
 
-  const handleSearchSubmit = () => {
+  const handleSearchSubmit = event => {
     setUrl(`${API_ENDPOINT}${searchTerm}`);
+
+    event.preventDefault();
   }
 
   const [stories, dispatchStories] = React.useReducer(
@@ -73,7 +75,7 @@ const App = () => {
   return <div>  
     <h1>My Hacker Stories</h1>
 
-    <Search
+    <SearchForm
       handleSearchInput={handleSearchInput}
       handleSearchSubmit={handleSearchSubmit}
       searchTerm={searchTerm} 

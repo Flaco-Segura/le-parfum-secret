@@ -1,8 +1,8 @@
 import * as React from 'react';
 import InputWithLabel from '../InputWithLabel/InputWithLabel';
 
-const Search = ({searchTerm, handleSearchInput, handleSearchSubmit}) => {
-  return <div>
+const SearchForm = ({searchTerm, handleSearchInput, handleSearchSubmit}) => {
+  return <form onSubmit={handleSearchSubmit}>
     <InputWithLabel
       htmlFor='search'
       id='search'
@@ -12,17 +12,13 @@ const Search = ({searchTerm, handleSearchInput, handleSearchSubmit}) => {
     >
       <strong>Search: </strong>
     </InputWithLabel>
-    <button
-      type='button'
-      disabled={!searchTerm}
-      onClick={handleSearchSubmit}
-    >
+    <button type='submit' disabled={!searchTerm}>
       Submit
     </button>
     <p>
       Searching for <strong>{searchTerm}</strong>
     </p>
-  </div>
+  </form>
 }
 
-export default Search;
+export default SearchForm;
