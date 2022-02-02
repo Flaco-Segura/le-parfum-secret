@@ -1,6 +1,8 @@
 import * as React from 'react';
 import axios from 'axios';
 
+import './App.css';
+
 import SearchForm from './components/SearchForm/SearchForm';
 import List from './components/List/List';
 
@@ -72,26 +74,28 @@ const App = () => {
     handleFetchStories();
   }, [handleFetchStories]);
 
-  return <div>  
-    <h1>My Hacker Stories</h1>
+  return <div className='container'>
+    <header className='header'>
+      <h1 className='headline-primary'>My Hacker Stories</h1>
 
-    <SearchForm
-      handleSearchInput={handleSearchInput}
-      handleSearchSubmit={handleSearchSubmit}
-      searchTerm={searchTerm} 
-    />      
+      <SearchForm
+        handleSearchInput={handleSearchInput}
+        handleSearchSubmit={handleSearchSubmit}
+        searchTerm={searchTerm} 
+      />
+    </header>
+    
+    <main>
+      {stories.isError && <p>Something went error...</p>}
 
-    <hr />
-
-    {stories.isError && <p>Something went error...</p>}
-
-    {stories.isLoading ?
-      (
-        <p>Loading...</p>
-      ) : (
-        <List list={stories.data} onRemoveItem={handleRemoveStory} />
-      )
-    }      
+      {stories.isLoading ?
+        (
+          <p>Loading...</p>
+        ) : (
+          <List list={stories.data} onRemoveItem={handleRemoveStory} />
+        )
+      }
+    </main> 
   </div>
 }
 
