@@ -1,0 +1,14 @@
+.searchForm {
+  padding: 10px 0 20px 0;
+  display: flex;
+  align-items: baseline;
+}
+
+.searchForm > p {
+  margin-left: 30px;
+}
+
+.searchFormLine {
+  display: flex;
+  justify-content: flex-start;
+}

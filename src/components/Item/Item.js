@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import './item.css';
+import styles from './item.module.css';
 
 const Item = ({item, onRemoveItem}) => {
   const {url, title, author, num_comments, points} = item;
 
-  return (<li className='item'>
+  return (<li className={styles.item}>
     <span style={{ width: '40%' }}>
       <a href={url}>{title} </a>
     </span>

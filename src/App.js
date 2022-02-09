@@ -1,7 +1,8 @@
 import * as React from 'react';
 import axios from 'axios';
 
-import './App.css';
+import styles from './App.module.css';
+import './index.css';
 
 import SearchForm from './components/SearchForm/SearchForm';
 import List from './components/List/List';
@@ -74,9 +75,9 @@ const App = () => {
     handleFetchStories();
   }, [handleFetchStories]);
 
-  return <div className='container'>
-    <header className='header'>
-      <h1 className='headline-primary'>My Hacker Stories</h1>
+  return <div className={styles.container}>
+    <header className={styles.header}>
+      <h1 className={styles.headlinePrimary}>My Hacker Stories</h1>
 
       <SearchForm
         handleSearchInput={handleSearchInput}

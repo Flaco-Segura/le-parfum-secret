@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './inputWithLabel.css';
+import styles from './inputWithLabel.module.css';
 
 const InputWithLabel = ({
   id,
@@ -22,17 +22,17 @@ const InputWithLabel = ({
     <>
       <label htmlFor={id} className='label'>{children}</label>
       &nbsp;
-      <div class="inputwithlabel_container">
+      <div className={styles.inputwithlabel_container}>
         <input
           ref={inputRef}
           id={id}
           type={type}
           value={value}
           onChange={onInputChange}
-          className='continer__input'
+          className={styles.container__input}
         />
-        <div className='search_icon_container'>
-          <div className='search_icon'></div>
+        <div className={styles.search_icon_container}>
+          <div className={styles.search_icon}></div>
         </div>
       </div>
     </>
