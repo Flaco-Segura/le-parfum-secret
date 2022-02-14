@@ -1,27 +1,27 @@
 import * as React from 'react';
 
-import './item.css';
+import { StyledItem, StyledColumn } from '../../styles/StyledItem';
+import { StyledButtonSmall } from '../../styles/StyledButton';
 
 const Item = ({item, onRemoveItem}) => {
   const {url, title, author, num_comments, points} = item;
 
-  return (<li className='item'>
-    <span style={{ width: '40%' }}>
+  return (<StyledItem>
+    <StyledColumn width="40%">
       <a href={url}>{title} </a>
-    </span>
-    <span style={{ width: '30%' }}>{author} </span>
-    <span style={{ width: '10%' }}>{num_comments} </span>
-    <span style={{ width: '10%' }}>{points} </span>
-    <span style={{ width: '10%' }}>
-      <button 
+    </StyledColumn>
+    <StyledColumn width="30%">{author} </StyledColumn>
+    <StyledColumn width="10%">{num_comments} </StyledColumn>
+    <StyledColumn width="10%">{points} </StyledColumn>
+    <StyledColumn width="10%">
+      <StyledButtonSmall 
         type='button'
         onClick={() => onRemoveItem(item)}
-        className='button button_small'
       >
         Dismiss
-      </button>
-    </span>
-  </li>);
+      </StyledButtonSmall>
+    </StyledColumn>
+  </StyledItem>);
 }
 
 export default Item;

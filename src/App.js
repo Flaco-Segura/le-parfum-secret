@@ -1,7 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 
-import './App.css';
+import { StyledContainer, StyledHeadlinePrimary, StyledHeader } from './styles/StyledApp';
 
 import SearchForm from './components/SearchForm/SearchForm';
 import List from './components/List/List';
@@ -74,16 +74,16 @@ const App = () => {
     handleFetchStories();
   }, [handleFetchStories]);
 
-  return <div className='container'>
-    <header className='header'>
-      <h1 className='headline-primary'>My Hacker Stories</h1>
+  return <StyledContainer>
+    <StyledHeader>
+      <StyledHeadlinePrimary>My Hacker Stories</StyledHeadlinePrimary>
 
       <SearchForm
         handleSearchInput={handleSearchInput}
         handleSearchSubmit={handleSearchSubmit}
         searchTerm={searchTerm} 
       />
-    </header>
+    </StyledHeader>
     
     <main>
       {stories.isError && <p>Something went error...</p>}
@@ -96,7 +96,7 @@ const App = () => {
         )
       }
     </main> 
-  </div>
+  </StyledContainer>
 }
 
 export default App;

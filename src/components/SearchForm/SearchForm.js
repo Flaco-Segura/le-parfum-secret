@@ -1,10 +1,11 @@
 import * as React from 'react';
 import InputWithLabel from '../InputWithLabel/InputWithLabel';
 
-import './searchForm.css';
+import { StyledSearchForm } from '../../styles/StyledSearchForm';
+import { StyledButtonLarge } from '../../styles/StyledButton';
 
 const SearchForm = ({searchTerm, handleSearchInput, handleSearchSubmit}) => {
-  return <form onSubmit={handleSearchSubmit} className='search-form'>
+  return <StyledSearchForm onSubmit={handleSearchSubmit}>
     <InputWithLabel
       htmlFor='search'
       id='search'
@@ -14,17 +15,16 @@ const SearchForm = ({searchTerm, handleSearchInput, handleSearchSubmit}) => {
     >
       <strong>Search: </strong>
     </InputWithLabel>
-    <button
+    <StyledButtonLarge
       type='submit'
-      disabled={!searchTerm}
-      className='button button_large'  
+      disabled={!searchTerm}  
     >
       Submit
-    </button>
+    </StyledButtonLarge>
     <p>
       Searching for <strong>{searchTerm}</strong>
     </p>
-  </form>
+  </StyledSearchForm>
 }
 
 export default SearchForm;

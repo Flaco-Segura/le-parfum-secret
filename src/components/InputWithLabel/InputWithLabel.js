@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-import './inputWithLabel.css';
+import { StyledLabel } from '../../styles/StyledLabel';
+import { StyledInputWithLabelContainer, StyledInputWithLabelIconContainer, StyledInputWithLabelInput, StyledInputWithLabelSearchIcon } from '../../styles/StyledInputWithLabel';
 
 const InputWithLabel = ({
   id,
@@ -20,21 +21,20 @@ const InputWithLabel = ({
 
   return (
     <>
-      <label htmlFor={id} className='label'>{children}</label>
+      <StyledLabel htmlFor={id}>{children}</StyledLabel>
       &nbsp;
-      <div class="inputwithlabel_container">
-        <input
+      <StyledInputWithLabelContainer>
+        <StyledInputWithLabelInput
           ref={inputRef}
           id={id}
           type={type}
           value={value}
           onChange={onInputChange}
-          className='continer__input'
         />
-        <div className='search_icon_container'>
-          <div className='search_icon'></div>
-        </div>
-      </div>
+        <StyledInputWithLabelIconContainer>
+          <StyledInputWithLabelSearchIcon></StyledInputWithLabelSearchIcon>
+        </StyledInputWithLabelIconContainer>
+      </StyledInputWithLabelContainer>
     </>
   )
 };
