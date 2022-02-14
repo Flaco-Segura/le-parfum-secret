@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import './item.css';
+import { ReactComponent as Check } from '../../check.svg';
 
 const Item = ({item, onRemoveItem}) => {
   const {url, title, author, num_comments, points} = item;
@@ -18,7 +19,7 @@ const Item = ({item, onRemoveItem}) => {
         onClick={() => onRemoveItem(item)}
         className='button button_small'
       >
-        Dismiss
+        <Check height="18px" width="18px" />
       </button>
     </span>
   </li>);

@@ -33,6 +33,11 @@
   color: #909590;
 }
 
+.button:hover > svg > g {
+  fill: #909590;
+  stroke: #9ae19d;
+}
+
 .button_small {
   padding: 5px;
 }
