@@ -30,6 +30,13 @@ const useSemiPersistentState = (key, initialState) => {
   return [value, setValue];
 };
 
+const getSumComments = stories => {
+  return stories.data.reduce(
+    (result, value) => result + value.num_comments,
+    0
+  )
+};
+
 const App = () => {
   const isLoading = false;
   const isError = false;
@@ -52,6 +59,10 @@ const App = () => {
   const [stories, dispatchStories] = React.useReducer(
     storiesReducer,
     { data: [], isLoading: isLoading, isError: isError }
+  );
+
+  const sumComments = React.useMemo(
+    () => getSumComments(stories), [stories]
   );
 
   const handleFetchStories = React.useCallback(async () => {
@@ -82,7 +93,7 @@ const App = () => {
 
   return <div className='container'>
     <header className='header'>
-      <h1 className='headline-primary'>My Hacker Stories</h1>
+      <h1 className='headline-primary'>My Hacker Stories with {sumComments} comments.</h1>
 
       <SearchForm
         handleSearchInput={handleSearchInput}
