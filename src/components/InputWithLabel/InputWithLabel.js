@@ -22,7 +22,7 @@ const InputWithLabel = ({
     <>
       <label htmlFor={id} className='label'>{children}</label>
       &nbsp;
-      <div class="inputwithlabel_container">
+      <div className="inputwithlabel_container">
         <input
           ref={inputRef}
           id={id}
