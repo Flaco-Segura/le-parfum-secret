@@ -3,7 +3,9 @@ import * as React from 'react';
 import './item.css';
 import { ReactComponent as Check } from '../../check.svg';
 
-const Item = ({item, onRemoveItem}) => {
+import { ItemProps } from '../../types/ItemType';
+
+const Item = ({item, onRemoveItem}: ItemProps) => {
   const {url, title, author, num_comments, points} = item;
 
   return (<li className='item'>

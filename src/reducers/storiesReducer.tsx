@@ -1,6 +1,8 @@
 import { STORIES_FETCH_FAILURE, STORIES_FETCH_INIT, STORIES_FETCH_SUCCESS, REMOVE_STORY } from '../actions/actions';
 
-const storiesReducer = (state, action) => {
+import { StoriesState, StoriesAction } from '../types/StoriesReducerType';
+
+const storiesReducer = (state: StoriesState, action: StoriesAction) => {
   switch (action.type) {
     case STORIES_FETCH_INIT:
       return {

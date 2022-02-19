@@ -2,7 +2,9 @@ import * as React from 'react';
 
 import Item from '../Item/Item';
 
-const List = React.memo(({list, onRemoveItem}) => 
+import { ListProps } from '../../types/ListType';
+
+const List = React.memo(({list, onRemoveItem}: ListProps) => 
 <ul> 
   {
     list.map(

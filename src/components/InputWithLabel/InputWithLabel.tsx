@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import './inputWithLabel.css';
 
+import {InputWithLabelProps} from '../../types/InputWithLabelType';
+
 const InputWithLabel = ({
   id,
   value,
@@ -9,8 +11,8 @@ const InputWithLabel = ({
   onInputChange,
   isFocused,
   children
-}) => {
-  const inputRef = React.useRef();
+}: InputWithLabelProps) => {
+  const inputRef = React.useRef<HTMLInputElement>(null!);
 
   React.useEffect(() => {
     if (isFocused && inputRef.current) {

@@ -10,9 +10,11 @@ import storiesReducer from './reducers/storiesReducer';
 
 import { STORIES_FETCH_FAILURE, STORIES_FETCH_INIT, STORIES_FETCH_SUCCESS, REMOVE_STORY  } from './actions/actions';
 
-const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?query='; 
+import { Story } from './types/StoryType';
 
-const useSemiPersistentState = (key, initialState) => {
+const API_ENDPOINT = 'https://hn.algolia.com/api/v1/search?query=';
+
+const useSemiPersistentState = (key: string, initialState: string): [string, (newValue: string) => void] => {
   const isMounted = React.useRef(false);
 
   const [value, setValue] = React.useState(
@@ -32,7 +34,7 @@ const useSemiPersistentState = (key, initialState) => {
 
 const getSumComments = stories => {
   return stories.data.reduce(
-    (result, value) => result + value.num_comments,
+    (result: number, value: any) => result + value.num_comments,
     0
   )
 };
@@ -46,11 +48,11 @@ const App = () => {
     `${API_ENDPOINT}${searchTerm}`
   );
 
-  const handleSearchInput = event => {
+  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
   };
 
-  const handleSearchSubmit = event => {
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     setUrl(`${API_ENDPOINT}${searchTerm}`);
 
     event.preventDefault();
@@ -80,7 +82,7 @@ const App = () => {
     }
   }, [url]);
 
-  const handleRemoveStory = React.useCallback( item => {
+  const handleRemoveStory = React.useCallback( (item: Story) => {
     dispatchStories({
       type: REMOVE_STORY,
       payload: item,

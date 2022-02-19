@@ -3,14 +3,16 @@ import InputWithLabel from '../InputWithLabel/InputWithLabel';
 
 import './searchForm.css';
 
-const SearchForm = ({searchTerm, handleSearchInput, handleSearchSubmit}) => {
-  return <form onSubmit={handleSearchSubmit} className='search-form'>
+import { SearchFormProps } from '../../types/SearchFormType';
+
+const SearchForm = ({searchTerm, onSearchInput, onSearchSubmit}: SearchFormProps) => {
+  return <form onSubmit={onSearchSubmit} className='search-form'>
     <InputWithLabel
-      htmlFor='search'
+      // htmlFor='search'
       id='search'
       value={searchTerm}
       isFocused
-      onInputChange={handleSearchInput}
+      onInputChange={onSearchInput}
     >
       <strong>Search: </strong>
     </InputWithLabel>
