@@ -25,4 +25,4 @@ const Item = ({item, onRemoveItem}) => {
   </li>);
 }
 
-export default Item;
+export { Item };

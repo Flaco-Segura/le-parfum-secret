@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Item from '../Item/Item';
+import { Item } from '../Item/Item';
 
 const List = React.memo(({list, onRemoveItem}) => 
 <ul> 
@@ -11,4 +11,4 @@ const List = React.memo(({list, onRemoveItem}) =>
   }
 </ul>);
 
-export default List;
+export { List };

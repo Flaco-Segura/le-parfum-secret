@@ -1,5 +1,5 @@
 import * as React from 'react';
-import InputWithLabel from '../InputWithLabel/InputWithLabel';
+import { InputWithLabel } from '../InputWithLabel/InputWithLabel';
 
 import './searchForm.css';
 
@@ -27,4 +27,4 @@ const SearchForm = ({searchTerm, handleSearchInput, handleSearchSubmit}) => {
   </form>
 }
 
-export default SearchForm;
+export { SearchForm };

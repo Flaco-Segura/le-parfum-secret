@@ -3,8 +3,8 @@ import axios from 'axios';
 
 import './App.css';
 
-import SearchForm from './components/SearchForm/SearchForm';
-import List from './components/List/List';
+import { SearchForm } from './components/SearchForm/SearchForm';
+import { List } from './components/List/List';
 
 import storiesReducer from './reducers/storiesReducer';
 

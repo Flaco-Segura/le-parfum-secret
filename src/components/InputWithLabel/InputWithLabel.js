@@ -39,4 +39,4 @@ const InputWithLabel = ({
   )
 };
 
-export default InputWithLabel;
+export { InputWithLabel };
