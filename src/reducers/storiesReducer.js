@@ -1,6 +1,6 @@
 import { STORIES_FETCH_FAILURE, STORIES_FETCH_INIT, STORIES_FETCH_SUCCESS, REMOVE_STORY } from '../actions/actions';
 
-export const storiesReducer = (state, action) => {
+const storiesReducer = (state, action) => {
   switch (action.type) {
     case STORIES_FETCH_INIT:
       return {
@@ -31,3 +31,5 @@ export const storiesReducer = (state, action) => {
       throw new Error();
   }
 }
+
+export default storiesReducer;
