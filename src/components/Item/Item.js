@@ -17,7 +17,7 @@ const Item = ({item, onRemoveItem}) => {
       <button 
         type='button'
         onClick={() => onRemoveItem(item)}
-        className='button button_small'
+        className='button'
       >
         <Check height="18px" width="18px" />
       </button>

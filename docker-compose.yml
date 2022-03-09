@@ -1,9 +1,4 @@
-redis:
-  image: redis
-  container_name: db
-  expose:
-    - 6379  
-app:
+ app:
   build: ./
   volumes:
     - ./:/app
